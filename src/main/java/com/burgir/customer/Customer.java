@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table
 public class Customer {
+
   @Id
   @SequenceGenerator(name = "customer_sequence", sequenceName = "customer_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_sequence")
@@ -132,4 +133,5 @@ public class Customer {
         ", email='" + getEmail() + "'" +
         "}";
   }
+
 }

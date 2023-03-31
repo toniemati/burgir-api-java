@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class CustomerConfig {
 
   @Bean
-  CommandLineRunner commandLineRunner(CustomerRepository customerRepository) {
+  CommandLineRunner customerRunner(CustomerRepository customerRepository) {
     return args -> {
       Customer s1 = new Customer(
           "Mario",
@@ -35,4 +35,5 @@ public class CustomerConfig {
       customerRepository.saveAll(List.of(s1, s2));
     };
   }
+
 }

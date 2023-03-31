@@ -50,4 +50,5 @@ public class CustomerController extends BurgirController {
   public Customer destroy(@PathVariable("id") Long id) {
     return this.customerService.destroy(id);
   }
+
 }
