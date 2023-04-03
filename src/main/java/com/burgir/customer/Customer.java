@@ -1,9 +1,15 @@
 package com.burgir.customer;
 
+import java.util.Set;
+
+import com.burgir.orders.Order;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -23,6 +29,9 @@ public class Customer {
   private String houseNumber;
   private String telephone;
   private String email;
+  @OneToMany
+  @JoinColumn(name = "customerId")
+  private Set<Order> orders;
 
   public Customer() {
 
@@ -117,6 +126,14 @@ public class Customer {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public Set<Order> getOrders() {
+    return this.orders;
+  }
+
+  public void setOrders(Set<Order> orders) {
+    this.orders = orders;
   }
 
   @Override
