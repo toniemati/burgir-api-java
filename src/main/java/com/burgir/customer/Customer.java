@@ -8,7 +8,7 @@ import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "customers")
 public class Customer {
 
   @Id

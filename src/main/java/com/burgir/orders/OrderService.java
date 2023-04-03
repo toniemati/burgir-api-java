@@ -1,5 +1,6 @@
 package com.burgir.orders;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class OrderService {
   }
 
   public Order store(Order order) {
+    order.setOrderDate(LocalDate.now());
+
     return this.orderRepository.save(order);
   }
 
