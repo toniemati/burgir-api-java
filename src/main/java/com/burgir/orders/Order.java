@@ -2,10 +2,15 @@ package com.burgir.orders;
 
 import java.time.LocalDateTime;
 
+import com.burgir.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -19,6 +24,10 @@ public class Order {
   private Long id;
   private LocalDateTime orderDate;
   private Long customerId;
+  @ManyToOne
+  @JoinColumn(name = "customerId", insertable = false, updatable = false)
+  @JsonIgnore
+  private Customer customer;
 
   public Order() {
 
@@ -53,12 +62,21 @@ public class Order {
     this.customerId = customerId;
   }
 
+  public Customer getCustomer() {
+    return this.customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
+
   @Override
   public String toString() {
     return "{" +
         " id='" + getId() + "'" +
         ", orderDate='" + getOrderDate() + "'" +
         ", customerId='" + getCustomerId() + "'" +
+        ", customer='" + getCustomer() + "'" +
         "}";
   }
 

@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -29,8 +28,7 @@ public class Customer {
   private String houseNumber;
   private String telephone;
   private String email;
-  @OneToMany
-  @JoinColumn(name = "customerId")
+  @OneToMany(mappedBy = "customer")
   private Set<Order> orders;
 
   public Customer() {
@@ -148,6 +146,7 @@ public class Customer {
         ", houseNumber='" + getHouseNumber() + "'" +
         ", telephone='" + getTelephone() + "'" +
         ", email='" + getEmail() + "'" +
+        ", orders='" + getOrders() + "'" +
         "}";
   }
 
