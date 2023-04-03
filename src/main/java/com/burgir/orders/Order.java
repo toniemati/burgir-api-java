@@ -1,6 +1,6 @@
 package com.burgir.orders;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,14 +17,14 @@ public class Order {
   @SequenceGenerator(name = "order_sequence", sequenceName = "order_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
   private Long id;
-  private LocalDate orderDate;
+  private LocalDateTime orderDate;
   private Long customerId;
 
   public Order() {
 
   }
 
-  public Order(LocalDate orderDate, Long customerId) {
+  public Order(LocalDateTime orderDate, Long customerId) {
     this.orderDate = orderDate;
     this.customerId = customerId;
   }
@@ -37,11 +37,11 @@ public class Order {
     this.id = id;
   }
 
-  public LocalDate getOrderDate() {
+  public LocalDateTime getOrderDate() {
     return this.orderDate;
   }
 
-  public void setOrderDate(LocalDate orderDate) {
+  public void setOrderDate(LocalDateTime orderDate) {
     this.orderDate = orderDate;
   }
 
