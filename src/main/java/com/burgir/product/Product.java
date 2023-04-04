@@ -1,9 +1,17 @@
 package com.burgir.product;
 
+import java.util.Set;
+
+import com.burgir.orders.Order;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -15,22 +23,32 @@ public class Product {
   @SequenceGenerator(name = "product_sequence", sequenceName = "product_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_sequence")
   private Long id;
+
   private String name;
+
   private String img;
+
   private String description;
+
   private double price;
-  private Long customerId;
+
+  private Long categoryId;
+
+  @ManyToMany
+  @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
+  @JsonIgnore
+  private Set<Order> orders;
 
   public Product() {
 
   }
 
-  public Product(String name, String img, String description, double price, Long customerId) {
+  public Product(String name, String img, String description, double price, Long categoryId) {
     this.name = name;
     this.img = img;
     this.description = description;
     this.price = price;
-    this.customerId = customerId;
+    this.categoryId = categoryId;
   }
 
   public Long getId() {
@@ -73,12 +91,12 @@ public class Product {
     this.price = price;
   }
 
-  public Long getCustomerId() {
-    return this.customerId;
+  public Long getCategoryId() {
+    return this.categoryId;
   }
 
-  public void setCustomerId(Long customerId) {
-    this.customerId = customerId;
+  public void setCategoryId(Long categoryId) {
+    this.categoryId = categoryId;
   }
 
   @Override
@@ -89,7 +107,7 @@ public class Product {
         ", img='" + getImg() + "'" +
         ", description='" + getDescription() + "'" +
         ", price='" + getPrice() + "'" +
-        ", customerId='" + getCustomerId() + "'" +
+        ", categoryId='" + getCategoryId() + "'" +
         "}";
   }
 }

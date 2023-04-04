@@ -1,8 +1,10 @@
 package com.burgir.orders;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import com.burgir.customer.Customer;
+import com.burgir.product.Product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -10,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -22,12 +25,18 @@ public class Order {
   @SequenceGenerator(name = "order_sequence", sequenceName = "order_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_sequence")
   private Long id;
+
   private LocalDateTime orderDate;
+
   private Long customerId;
+
   @ManyToOne
   @JoinColumn(name = "customerId", insertable = false, updatable = false)
   @JsonIgnore
   private Customer customer;
+
+  @ManyToMany(mappedBy = "orders")
+  private Set<Product> products;
 
   public Order() {
 
@@ -68,6 +77,14 @@ public class Order {
 
   public void setCustomer(Customer customer) {
     this.customer = customer;
+  }
+
+  public Set<Product> getProducts() {
+    return this.products;
+  }
+
+  public void setProducts(Set<Product> products) {
+    this.products = products;
   }
 
   @Override
