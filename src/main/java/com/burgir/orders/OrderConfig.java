@@ -3,26 +3,47 @@ package com.burgir.orders;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.Month;
-import java.util.List;
+import java.util.LinkedList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.burgir.customer.CustomerRepository;
+import com.github.javafaker.Faker;
+
 @Configuration
 public class OrderConfig {
+
+  @Autowired
+  private CustomerRepository customerRepository;
 
   @Bean
   CommandLineRunner orderRunner(OrderRepository repository) {
     return args -> {
-      Order o1 = new Order(LocalDateTime.of(LocalDate.of(2023, Month.MARCH, 30), LocalTime.of(15, 51, 21)), 1l);
+      LinkedList<Order> orders = new LinkedList<Order>();
 
-      Order o2 = new Order(LocalDateTime.of(LocalDate.of(2023, Month.MARCH, 31), LocalTime.of(16, 49, 59)), 1l);
+      Faker faker = new Faker();
+      Long customersCount = this.customerRepository.count();
 
-      Order o3 = new Order(LocalDateTime.of(LocalDate.of(2023, Month.MARCH, 31), LocalTime.of(14, 33, 44)), 2l);
+      for (int i = 0; i < 419; i++) {
+        Order o = new Order(
+            LocalDateTime.of(
+                LocalDate.of(
+                    faker.number().numberBetween(2020, 2023),
+                    faker.number().numberBetween(1, 12),
+                    faker.number().numberBetween(1, 31)),
+                LocalTime.of(
+                    faker.number().numberBetween(0, 23),
+                    faker.number().numberBetween(0, 50),
+                    faker.number().numberBetween(0, 59))),
+            faker.number().numberBetween(1l, customersCount));
 
-      repository.saveAll(List.of(o1, o2, o3));
+        orders.add(o);
+      }
+
+      repository.saveAll(orders);
     };
   }
 

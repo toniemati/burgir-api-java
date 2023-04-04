@@ -1,10 +1,12 @@
 package com.burgir.customer;
 
-import java.util.List;
+import java.util.LinkedList;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.github.javafaker.Faker;
 
 @Configuration
 public class CustomerConfig {
@@ -12,27 +14,25 @@ public class CustomerConfig {
   @Bean
   CommandLineRunner customerRunner(CustomerRepository customerRepository) {
     return args -> {
-      Customer s1 = new Customer(
-          "Mario",
-          "Balotelli",
-          "Polska",
-          "Gdańsk",
-          "Słoneczna",
-          "10",
-          "123123123",
-          "mario@gmail.com");
+      LinkedList<Customer> customers = new LinkedList<Customer>();
 
-      Customer s2 = new Customer(
-          "Symere",
-          "Woods",
-          "Polska",
-          "Wrocław",
-          "Krótka",
-          "69",
-          "123456789",
-          "s.woods@gmail.com");
+      Faker faker = new Faker();
 
-      customerRepository.saveAll(List.of(s1, s2));
+      for (int i = 0; i < 168; i++) {
+        Customer c = new Customer(
+            faker.name().firstName(),
+            faker.name().lastName(),
+            faker.address().country(),
+            faker.address().city(),
+            faker.address().streetName(),
+            faker.address().buildingNumber(),
+            faker.phoneNumber().cellPhone(),
+            "test@gmail.com");
+
+        customers.add(c);
+      }
+
+      customerRepository.saveAll(customers);
     };
   }
 
