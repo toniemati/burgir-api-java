@@ -12,13 +12,15 @@ public class CategoryConfig {
   @Bean
   CommandLineRunner categoryRunner(CategoryRepository repository) {
     return args -> {
-      Category c1 = new Category("Burger", "Pyszne hamburgerki 🍔");
+      Category c1 = new Category("Burgery", "Przepyszne hamburgery 🍔");
 
-      Category c2 = new Category("Napój", "Najlepsze napoje na swiecie 🧃");
+      Category c2 = new Category("Dodatki", "Najlepsze dodatki 🍟");
 
-      Category c3 = new Category("Sos", "Takich sosów jeszcze nie jadłeś 🍛");
+      Category c3 = new Category("Sosy", "Sosy jakich jeszcze nie jadłeś 🍛");
 
-      repository.saveAll(List.of(c1, c2, c3));
+      Category c4 = new Category("Napoje", "Orzeźwiające napoje 🧃");
+
+      repository.saveAll(List.of(c1, c2, c3, c4));
     };
   }
 
