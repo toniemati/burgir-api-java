@@ -5,7 +5,8 @@ import java.util.Set;
 
 import com.burgir.customer.Customer;
 import com.burgir.product.Product;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,10 +33,11 @@ public class Order {
 
   @ManyToOne
   @JoinColumn(name = "customerId", insertable = false, updatable = false)
-  @JsonIgnore
+  @JsonBackReference
   private Customer customer;
 
   @ManyToMany(mappedBy = "orders")
+  @JsonManagedReference
   private Set<Product> products;
 
   public Order() {

@@ -3,6 +3,7 @@ package com.burgir.customer;
 import java.util.Set;
 
 import com.burgir.orders.Order;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,15 +21,25 @@ public class Customer {
   @SequenceGenerator(name = "customer_sequence", sequenceName = "customer_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_sequence")
   private Long id;
+
   private String firstName;
+
   private String lastName;
+
   private String country;
+
   private String city;
+
   private String street;
+
   private String houseNumber;
+
   private String telephone;
+
   private String email;
+
   @OneToMany(mappedBy = "customer")
+  @JsonManagedReference
   private Set<Order> orders;
 
   public Customer() {
