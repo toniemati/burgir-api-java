@@ -51,7 +51,7 @@ public class IngredientService {
     boolean exists = this.ingredientRepository.existsById(id);
 
     if (!exists) {
-      new IllegalStateException("Category with ID: " + id + " does not exist!");
+      new IllegalStateException("Ingredient with ID: " + id + " does not exist!");
     }
 
     Ingredient ingredient = this.ingredientRepository.findById(id).get();
