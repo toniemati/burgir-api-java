@@ -1,29 +1,30 @@
 package com.burgir.delivery;
 
+import java.util.LinkedList;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.burgir.orders.Order;
 import com.burgir.orders.OrderRepository;
+import com.github.javafaker.Faker;
 
-@Configuration
 public class DeliveryConfig {
 
-  @Autowired
-  private OrderRepository orderRepository;
+  public static LinkedList<Delivery> get(OrderRepository orderRepository) {
+    List<Order> orders = orderRepository.findAll();
+    Faker faker = new Faker();
 
-  @Bean
-  @org.springframework.core.annotation.Order(1)
-  CommandLineRunner deliveryRunner(DeliveryRepository repository) {
-    return args -> {
-      List<Order> orders = this.orderRepository.findAll();
+    LinkedList<Delivery> deliveries = new LinkedList<Delivery>();
 
-      System.out.println("orders: " + orders.size());
-    };
+    for (Order o : orders) {
+      Double distance = faker.number().randomDouble(2, 1, 50);
+      // TODO other delivery values
+
+      Delivery d = new Delivery(distance, true, 1l, 1l, 1l);
+
+      deliveries.add(d);
+    }
+
+    return deliveries;
   }
 
 }
