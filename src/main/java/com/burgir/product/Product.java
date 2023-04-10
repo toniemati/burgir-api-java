@@ -3,8 +3,10 @@ package com.burgir.product;
 import java.util.Set;
 
 import com.burgir.category.Category;
+import com.burgir.ingredient.Ingredient;
 import com.burgir.orders.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,6 +50,11 @@ public class Product {
   @JoinColumn(name = "categoryId", insertable = false, updatable = false)
   @JsonBackReference
   private Category category;
+
+  @ManyToMany
+  @JoinTable(name = "ingredient_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+  @JsonManagedReference
+  private Set<Ingredient> ingredients;
 
   public Product() {
 
@@ -115,6 +122,14 @@ public class Product {
 
   public void setCategory(Category category) {
     this.category = category;
+  }
+
+  public Set<Ingredient> getIngredients() {
+    return this.ingredients;
+  }
+
+  public void setIngredients(Set<Ingredient> ingredients) {
+    this.ingredients = ingredients;
   }
 
   @Override
