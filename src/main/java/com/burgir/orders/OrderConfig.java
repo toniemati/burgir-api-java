@@ -6,11 +6,13 @@ import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.burgir.customer.CustomerRepository;
 import com.github.javafaker.Faker;
 
 public class OrderConfig {
 
-  public static List<Order> get() {
+  public static List<Order> get(CustomerRepository customerRepository) {
+    Long customersCount = customerRepository.count();
     LinkedList<Order> orders = new LinkedList<Order>();
     Faker faker = new Faker();
 
@@ -25,7 +27,7 @@ public class OrderConfig {
                   faker.number().numberBetween(0, 23),
                   faker.number().numberBetween(0, 50),
                   faker.number().numberBetween(0, 59))),
-          faker.number().numberBetween(1l, 10)); // TODO - max to customersCount
+          faker.number().numberBetween(1l, customersCount));
 
       orders.add(o);
     }

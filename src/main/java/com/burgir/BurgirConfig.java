@@ -70,9 +70,9 @@ public class BurgirConfig {
   }
 
   @Bean
-  CommandLineRunner orderRunner(OrderRepository repository) {
+  CommandLineRunner orderRunner(OrderRepository repository, CustomerRepository customerRepository) {
     return args -> {
-      repository.saveAll(OrderConfig.get());
+      repository.saveAll(OrderConfig.get(customerRepository));
     };
   }
 
