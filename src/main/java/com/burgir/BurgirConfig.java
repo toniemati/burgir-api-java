@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.burgir.car.CarConfig;
+import com.burgir.car.CarRepository;
 import com.burgir.category.CategoryConfig;
 import com.burgir.category.CategoryRepository;
 import com.burgir.customer.CustomerConfig;
@@ -49,9 +51,9 @@ public class BurgirConfig {
   }
 
   @Bean
-  CommandLineRunner carRunner() {
+  CommandLineRunner carRunner(CarRepository carRepository) {
     return args -> {
-      System.out.println("car_runner");
+      carRepository.saveAll(CarConfig.get());
     };
   }
 
