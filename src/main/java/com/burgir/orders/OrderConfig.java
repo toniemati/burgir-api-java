@@ -4,14 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.LinkedList;
-import java.util.List;
 
 import com.burgir.customer.CustomerRepository;
 import com.github.javafaker.Faker;
 
 public class OrderConfig {
 
-  public static List<Order> get(CustomerRepository customerRepository) {
+  public static LinkedList<Order> get(CustomerRepository customerRepository) {
     Long customersCount = customerRepository.count();
     LinkedList<Order> orders = new LinkedList<Order>();
     Faker faker = new Faker();

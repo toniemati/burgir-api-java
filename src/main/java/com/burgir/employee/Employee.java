@@ -27,7 +27,7 @@ public class Employee {
 
   private String title;
 
-  private LocalDateTime hireDate;
+  private LocalDateTime hireDate = LocalDateTime.now();
 
   private Double salary;
 

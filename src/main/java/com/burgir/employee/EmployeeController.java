@@ -30,12 +30,12 @@ public class EmployeeController extends BurgirController {
     return this.employeeService.store(employee);
   }
 
-  @GetMapping("/Employee/{id}")
+  @GetMapping("/employee/{id}")
   public Employee show(@PathVariable("id") Long id) {
     return this.employeeService.show(id);
   }
 
-  @PutMapping("/Employee/{id}")
+  @PutMapping("/employee/{id}")
   public Employee update(
       @PathVariable("id") Long id,
       @RequestParam(required = false) String firstName,
@@ -44,7 +44,7 @@ public class EmployeeController extends BurgirController {
     return this.employeeService.update(id, firstName, lastName);
   }
 
-  @DeleteMapping("/Employee/{id}")
+  @DeleteMapping("/employee/{id}")
   public Employee destroy(@PathVariable("id") Long id) {
     return this.employeeService.destroy(id);
   }

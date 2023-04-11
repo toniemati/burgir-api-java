@@ -13,15 +13,18 @@ public class CustomerConfig {
     Faker faker = new Faker();
 
     for (int i = 0; i < 168; i++) {
+      String firstName = faker.name().firstName();
+      String lastName = faker.name().lastName();
+
       Customer c = new Customer(
-          faker.name().firstName(),
-          faker.name().lastName(),
+          firstName,
+          lastName,
           faker.address().country(),
           faker.address().city(),
           faker.address().streetName(),
           faker.address().buildingNumber(),
           faker.phoneNumber().cellPhone(),
-          "test@gmail.com");
+          (firstName + "." + lastName + "@gmail.com").toLowerCase());
 
       customers.add(c);
     }

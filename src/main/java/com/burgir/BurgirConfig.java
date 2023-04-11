@@ -12,6 +12,8 @@ import com.burgir.customer.CustomerConfig;
 import com.burgir.customer.CustomerRepository;
 import com.burgir.delivery.DeliveryConfig;
 import com.burgir.delivery.DeliveryRepository;
+import com.burgir.employee.EmployeeConfig;
+import com.burgir.employee.EmployeeRepository;
 import com.burgir.ingredient.IngredientConfig;
 import com.burgir.ingredient.IngredientRepository;
 import com.burgir.orders.OrderConfig;
@@ -23,30 +25,33 @@ import com.burgir.product.ProductRepository;
 public class BurgirConfig {
 
   @Bean
-  CommandLineRunner categoryRunner(CategoryRepository repository) {
+  CommandLineRunner categoryRunner(CategoryRepository categoryRepository) {
     return args -> {
-      repository.saveAll(CategoryConfig.get());
+      categoryRepository.saveAll(CategoryConfig.get());
     };
   }
 
   @Bean
-  CommandLineRunner productRunner(ProductRepository repository) {
+  CommandLineRunner productRunner(ProductRepository productRepository) {
     return args -> {
-      repository.saveAll(ProductConfig.get());
+      productRepository.saveAll(ProductConfig.get());
     };
   }
 
   @Bean
-  CommandLineRunner ingredientRunner(IngredientRepository repository) {
+  CommandLineRunner ingredientRunner(IngredientRepository ingredientRepository) {
     return args -> {
-      repository.saveAll(IngredientConfig.get());
+      ingredientRepository.saveAll(IngredientConfig.get());
     };
   }
 
   @Bean
-  CommandLineRunner ingredientProductRunner() {
+  CommandLineRunner ingredientProductRunner(
+      IngredientRepository ingredientRepository,
+      ProductRepository productRepository) {
+
     return args -> {
-      System.out.println("ingredient_product_runner");
+      productRepository.saveAll(ProductConfig.productsWithIngredients(ingredientRepository, productRepository));
     };
   }
 
@@ -58,23 +63,26 @@ public class BurgirConfig {
   }
 
   @Bean
-  CommandLineRunner customerRunner(CustomerRepository repository) {
+  CommandLineRunner customerRunner(CustomerRepository customerRepository) {
     return args -> {
-      repository.saveAll(CustomerConfig.get());
+      customerRepository.saveAll(CustomerConfig.get());
     };
   }
 
   @Bean
-  CommandLineRunner employeeRunner() {
+  CommandLineRunner employeeRunner(EmployeeRepository employeeRepository) {
     return args -> {
-      System.out.println("employee_runner");
+      employeeRepository.saveAll(EmployeeConfig.get());
     };
   }
 
   @Bean
-  CommandLineRunner orderRunner(OrderRepository repository, CustomerRepository customerRepository) {
+  CommandLineRunner orderRunner(
+      OrderRepository orderRepository,
+      CustomerRepository customerRepository) {
+
     return args -> {
-      repository.saveAll(OrderConfig.get(customerRepository));
+      orderRepository.saveAll(OrderConfig.get(customerRepository));
     };
   }
 
@@ -83,6 +91,7 @@ public class BurgirConfig {
       DeliveryRepository deliveryRepository,
       OrderRepository orderRepository,
       CarRepository carRepository) {
+
     return args -> {
       deliveryRepository.saveAll(DeliveryConfig.get(orderRepository, carRepository));
     };

@@ -68,6 +68,14 @@ public class Product {
     this.categoryId = categoryId;
   }
 
+  /**
+   * 
+   * todo adding ingredient
+   */
+  public void addIngredient(Ingredient i) {
+    this.setIngredients(Set.of(i));
+  }
+
   public Long getId() {
     return this.id;
   }
