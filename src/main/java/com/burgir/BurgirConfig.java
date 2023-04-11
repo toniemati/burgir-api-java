@@ -79,9 +79,12 @@ public class BurgirConfig {
   }
 
   @Bean
-  CommandLineRunner deliveryRunner(DeliveryRepository deliveryRepository, OrderRepository orderRepository) {
+  CommandLineRunner deliveryRunner(
+      DeliveryRepository deliveryRepository,
+      OrderRepository orderRepository,
+      CarRepository carRepository) {
     return args -> {
-      deliveryRepository.saveAll(DeliveryConfig.get(orderRepository));
+      deliveryRepository.saveAll(DeliveryConfig.get(orderRepository, carRepository));
     };
   }
 
