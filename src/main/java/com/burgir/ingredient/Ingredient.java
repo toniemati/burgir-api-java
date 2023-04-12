@@ -2,15 +2,15 @@ package com.burgir.ingredient;
 
 import java.util.Set;
 
-import com.burgir.product.Product;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.burgir.ingredient_product.IngredientProduct;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -28,9 +28,9 @@ public class Ingredient {
   @Column(columnDefinition = "text")
   private String description;
 
-  @ManyToMany(mappedBy = "ingredients")
-  @JsonBackReference
-  private Set<Product> products;
+  @OneToMany(mappedBy = "ingredient")
+  @JsonIgnore
+  private Set<IngredientProduct> products;
 
   public Ingredient() {
 
@@ -65,11 +65,11 @@ public class Ingredient {
     this.description = description;
   }
 
-  public Set<Product> getProducts() {
+  public Set<IngredientProduct> getProducts() {
     return this.products;
   }
 
-  public void setProducts(Set<Product> products) {
+  public void setProducts(Set<IngredientProduct> products) {
     this.products = products;
   }
 

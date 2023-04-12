@@ -2,6 +2,7 @@ package com.burgir.product;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -16,7 +17,7 @@ public class ProductService {
   }
 
   public List<Product> index() {
-    return this.productRepository.findAll();
+    return this.productRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
   }
 
   public Product store(Product product) {

@@ -3,10 +3,9 @@ package com.burgir.product;
 import java.util.Set;
 
 import com.burgir.category.Category;
-import com.burgir.ingredient.Ingredient;
+import com.burgir.ingredient_product.IngredientProduct;
 import com.burgir.orders.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -51,10 +51,8 @@ public class Product {
   @JsonBackReference
   private Category category;
 
-  @ManyToMany
-  @JoinTable(name = "ingredient_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-  @JsonManagedReference
-  private Set<Ingredient> ingredients;
+  @OneToMany(mappedBy = "product")
+  private Set<IngredientProduct> ingredients;
 
   public Product() {
 
@@ -66,14 +64,6 @@ public class Product {
     this.description = description;
     this.price = price;
     this.categoryId = categoryId;
-  }
-
-  /**
-   * 
-   * todo adding ingredient
-   */
-  public void addIngredient(Ingredient i) {
-    this.setIngredients(Set.of(i));
   }
 
   public Long getId() {
@@ -132,11 +122,11 @@ public class Product {
     this.category = category;
   }
 
-  public Set<Ingredient> getIngredients() {
+  public Set<IngredientProduct> getIngredients() {
     return this.ingredients;
   }
 
-  public void setIngredients(Set<Ingredient> ingredients) {
+  public void setIngredients(Set<IngredientProduct> ingredients) {
     this.ingredients = ingredients;
   }
 

@@ -16,6 +16,8 @@ import com.burgir.employee.EmployeeConfig;
 import com.burgir.employee.EmployeeRepository;
 import com.burgir.ingredient.IngredientConfig;
 import com.burgir.ingredient.IngredientRepository;
+import com.burgir.ingredient_product.IngredientProductConfig;
+import com.burgir.ingredient_product.IngredientProductRepository;
 import com.burgir.orders.OrderConfig;
 import com.burgir.orders.OrderRepository;
 import com.burgir.product.ProductConfig;
@@ -46,12 +48,10 @@ public class BurgirConfig {
   }
 
   @Bean
-  CommandLineRunner ingredientProductRunner(
-      IngredientRepository ingredientRepository,
-      ProductRepository productRepository) {
+  CommandLineRunner ingredientProductRunner(IngredientProductRepository ingredientProductRepository) {
 
     return args -> {
-      productRepository.saveAll(ProductConfig.productsWithIngredients(ingredientRepository, productRepository));
+      IngredientProductConfig.addIngredients(ingredientProductRepository);
     };
   }
 
