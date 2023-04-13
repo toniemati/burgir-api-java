@@ -90,10 +90,11 @@ public class BurgirConfig {
   CommandLineRunner deliveryRunner(
       DeliveryRepository deliveryRepository,
       OrderRepository orderRepository,
+      EmployeeRepository employeeRepository,
       CarRepository carRepository) {
 
     return args -> {
-      deliveryRepository.saveAll(DeliveryConfig.get(orderRepository, carRepository));
+      deliveryRepository.saveAll(DeliveryConfig.get(orderRepository, employeeRepository, carRepository));
     };
   }
 
