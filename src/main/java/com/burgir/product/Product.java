@@ -4,8 +4,9 @@ import java.util.Set;
 
 import com.burgir.category.Category;
 import com.burgir.ingredient_product.IngredientProduct;
-import com.burgir.orders.Order;
+import com.burgir.order_product.OrderProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,8 +14,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
@@ -41,10 +40,9 @@ public class Product {
 
   private Long categoryId;
 
-  @ManyToMany
-  @JoinTable(name = "order_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "order_id"))
-  @JsonBackReference
-  private Set<Order> orders;
+  @OneToMany(mappedBy = "product")
+  @JsonIgnore
+  private Set<OrderProduct> orders;
 
   @ManyToOne
   @JoinColumn(name = "categoryId", insertable = false, updatable = false)

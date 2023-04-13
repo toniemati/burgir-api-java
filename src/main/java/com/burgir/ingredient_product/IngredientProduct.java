@@ -30,6 +30,7 @@ public class IngredientProduct {
   private Product product;
 
   public IngredientProduct() {
+
   }
 
   public IngredientProduct(Ingredient ingredient, Product product) {

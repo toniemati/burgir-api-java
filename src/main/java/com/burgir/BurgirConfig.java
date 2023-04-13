@@ -18,6 +18,8 @@ import com.burgir.ingredient.IngredientConfig;
 import com.burgir.ingredient.IngredientRepository;
 import com.burgir.ingredient_product.IngredientProductConfig;
 import com.burgir.ingredient_product.IngredientProductRepository;
+import com.burgir.order_product.OrderProductConfig;
+import com.burgir.order_product.OrderProductRepository;
 import com.burgir.orders.OrderConfig;
 import com.burgir.orders.OrderRepository;
 import com.burgir.product.ProductConfig;
@@ -99,9 +101,12 @@ public class BurgirConfig {
   }
 
   @Bean
-  CommandLineRunner orderProductRunner() {
+  CommandLineRunner orderProductRunner(
+      OrderProductRepository orderProductRepository,
+      OrderRepository orderRepository,
+      ProductRepository productRepository) {
     return args -> {
-      System.out.println("order_product_runner");
+      OrderProductConfig.addProducts(orderProductRepository, orderRepository, productRepository);
     };
   }
 
