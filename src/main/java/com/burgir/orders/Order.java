@@ -6,7 +6,6 @@ import java.util.Set;
 import com.burgir.customer.Customer;
 import com.burgir.order_product.OrderProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,7 +36,6 @@ public class Order {
   private Customer customer;
 
   @OneToMany(mappedBy = "order")
-  @JsonIgnore
   private Set<OrderProduct> products;
 
   public Order() {
@@ -73,14 +71,6 @@ public class Order {
     this.customerId = customerId;
   }
 
-  public Customer getCustomer() {
-    return this.customer;
-  }
-
-  public void setCustomer(Customer customer) {
-    this.customer = customer;
-  }
-
   public Set<OrderProduct> getProducts() {
     return this.products;
   }
@@ -95,7 +85,6 @@ public class Order {
         " id='" + getId() + "'" +
         ", orderDate='" + getOrderDate() + "'" +
         ", customerId='" + getCustomerId() + "'" +
-        ", customer='" + getCustomer() + "'" +
         "}";
   }
 

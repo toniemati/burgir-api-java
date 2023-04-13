@@ -40,10 +40,6 @@ public class Product {
 
   private Long categoryId;
 
-  @OneToMany(mappedBy = "product")
-  @JsonIgnore
-  private Set<OrderProduct> orders;
-
   @ManyToOne
   @JoinColumn(name = "categoryId", insertable = false, updatable = false)
   @JsonBackReference
@@ -51,6 +47,10 @@ public class Product {
 
   @OneToMany(mappedBy = "product")
   private Set<IngredientProduct> ingredients;
+
+  @OneToMany(mappedBy = "product")
+  @JsonIgnore
+  private Set<OrderProduct> orders;
 
   public Product() {
 
@@ -112,20 +112,20 @@ public class Product {
     this.categoryId = categoryId;
   }
 
-  public Category getCategory() {
-    return this.category;
-  }
-
-  public void setCategory(Category category) {
-    this.category = category;
-  }
-
-  public Set<IngredientProduct> getIngredients() {
+  public Set<IngredientProduct> getIngrdients() {
     return this.ingredients;
   }
 
   public void setIngredients(Set<IngredientProduct> ingredients) {
     this.ingredients = ingredients;
+  }
+
+  public Set<OrderProduct> getOrders() {
+    return this.orders;
+  }
+
+  public void setOrders(Set<OrderProduct> orders) {
+    this.orders = orders;
   }
 
   @Override

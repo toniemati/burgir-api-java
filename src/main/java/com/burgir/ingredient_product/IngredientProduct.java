@@ -18,6 +18,7 @@ public class IngredientProduct {
   @Id
   @SequenceGenerator(name = "ingredient_product_sequence", sequenceName = "ingredient_product_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ingredient_product_sequence")
+  @JsonIgnore
   private Long id;
 
   @ManyToOne

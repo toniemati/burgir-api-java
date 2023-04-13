@@ -18,6 +18,7 @@ public class OrderProduct {
   @Id
   @SequenceGenerator(name = "order_product_sequence", sequenceName = "order_product_sequence", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_product_sequence")
+  @JsonIgnore
   private Long id;
 
   @ManyToOne
@@ -46,19 +47,19 @@ public class OrderProduct {
     this.id = id;
   }
 
-  public Order getOrderId() {
+  public Order getOrder() {
     return this.order;
   }
 
-  public void setOrderId(Order orderId) {
+  public void setOrder(Order orderId) {
     this.order = orderId;
   }
 
-  public Product getProductId() {
+  public Product getProduct() {
     return this.product;
   }
 
-  public void setProductId(Product product) {
+  public void setProduct(Product product) {
     this.product = product;
   }
 
@@ -66,8 +67,8 @@ public class OrderProduct {
   public String toString() {
     return "{" +
         " id='" + getId() + "'" +
-        ", orderId='" + getOrderId() + "'" +
-        ", productId='" + getProductId() + "'" +
+        ", orderId='" + getOrder() + "'" +
+        ", productId='" + getProduct() + "'" +
         "}";
   }
 
