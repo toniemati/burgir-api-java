@@ -1,126 +1,106 @@
 package com.burgir.ingredient;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class IngredientConfig {
 
   public static List<Ingredient> get() {
-    Ingredient i1 = new Ingredient( // * 1
+    LinkedList<Ingredient> ingredients = new LinkedList<>();
+
+    ingredients.add(new Ingredient( // * 1
         "Bułka",
-        "Świeża bułeczka wypiekana u nas w lokalu");
+        "Świeża bułeczka wypiekana u nas w lokalu"));
 
-    Ingredient i2 = new Ingredient( // * 2
+    ingredients.add(new Ingredient( // * 2
         "Kotlet z kurczaka",
-        "Najlepszy kotlecik z kurczaka jaki jadłeś");
+        "Najlepszy kotlecik z kurczaka jaki jadłeś"));
 
-    Ingredient i3 = new Ingredient( // * 3
+    ingredients.add(new Ingredient( // * 3
         "Kotlet wołowy",
-        "Mięsko wołowe pierwszej klasy, pyszne i soczyste");
+        "Mięsko wołowe pierwszej klasy, pyszne i soczyste"));
 
-    Ingredient i4 = new Ingredient( // * 4
+    ingredients.add(new Ingredient( // * 4
         "Kotlet vege",
-        "Niby vege a smakuje jak najlepsze mięsko");
+        "Niby vege a smakuje jak najlepsze mięsko"));
 
-    Ingredient i5 = new Ingredient( // * 5
+    ingredients.add(new Ingredient( // * 5
         "Plasterki bekonu",
-        "Chrupiące i pysznitukie plasterki boczku");
+        "Chrupiące i pysznitukie plasterki boczku"));
 
-    Ingredient i6 = new Ingredient( // * 6
+    ingredients.add(new Ingredient( // * 6
         "Placek ziemniaczany",
-        "Lubie placki");
+        "Lubie placki"));
 
-    Ingredient i7 = new Ingredient( // * 7
+    ingredients.add(new Ingredient( // * 7
         "Prażona cebulka",
-        "Mmm chrupiące");
+        "Mmm chrupiące"));
 
-    Ingredient i8 = new Ingredient( // * 8
+    ingredients.add(new Ingredient( // * 8
         "Ser camembert",
-        "Tłuściutki serek");
+        "Tłuściutki serek"));
 
-    Ingredient i9 = new Ingredient( // * 9
+    ingredients.add(new Ingredient( // * 9
         "Ser cheddar",
-        "Pyszny serek cheddar");
+        "Pyszny serek cheddar"));
 
-    Ingredient i10 = new Ingredient( // * 10
+    ingredients.add(new Ingredient( // * 10
         "Ser mozzarella",
-        "Oczywiście sama woda, tą białą kulke wyrzucamy");
+        "Oczywiście sama woda, tą białą kulke wyrzucamy"));
 
-    Ingredient i11 = new Ingredient( // * 11
+    ingredients.add(new Ingredient( // * 11
         "Pomidor",
-        "Świeżutkie pomidorki");
+        "Świeżutkie pomidorki"));
 
-    Ingredient i12 = new Ingredient( // * 12
+    ingredients.add(new Ingredient( // * 12
         "Sałata",
-        "Świeżutka sałata");
+        "Świeżutka sałata"));
 
-    Ingredient i13 = new Ingredient( // * 13
+    ingredients.add(new Ingredient( // * 13
         "Ogórki kiszone",
-        "Najlepsze ogórki kiszone z naszego kraju");
+        "Najlepsze ogórki kiszone z naszego kraju"));
 
-    Ingredient i14 = new Ingredient( // * 14
+    ingredients.add(new Ingredient( // * 14
         "Pieczarki",
-        "Coś dla grzybiarzy");
+        "Coś dla grzybiarzy"));
 
-    Ingredient i15 = new Ingredient( // * 15
+    ingredients.add(new Ingredient( // * 15
         "Rukola",
-        "Prawie sałata ale zdrowsza");
+        "Prawie sałata ale zdrowsza"));
 
-    Ingredient i16 = new Ingredient( // * 16
+    ingredients.add(new Ingredient( // * 16
         "Ostre papryczki",
-        "Ostre ale nie aż tak, żeby niezjeść");
+        "Ostre ale nie aż tak, żeby niezjeść"));
 
-    Ingredient i17 = new Ingredient( // * 17
+    ingredients.add(new Ingredient( // * 17
         "Sosik BBQ",
-        "Sosik BBQ");
+        "Sosik BBQ"));
 
-    Ingredient i18 = new Ingredient( // * 18
+    ingredients.add(new Ingredient( // * 18
         "Czerwona cebulka",
-        "Bo w końcu jesteśmy Polakami");
+        "Bo w końcu jesteśmy Polakami"));
 
-    Ingredient i19 = new Ingredient( // * 19
+    ingredients.add(new Ingredient( // * 19
         "Cebula",
-        "Bo w końcu jesteśmy Polakami");
+        "Bo w końcu jesteśmy Polakami"));
 
-    Ingredient i20 = new Ingredient( // * 20
+    ingredients.add(new Ingredient( // * 20
         "Sosik ultra ostry",
-        "Fiu fiu");
+        "Fiu fiu"));
 
-    Ingredient i21 = new Ingredient( // * 21
+    ingredients.add(new Ingredient( // * 21
         "Sosik majonezowy",
-        "Just mayo");
+        "Just mayo"));
 
-    Ingredient i22 = new Ingredient( // * 22
+    ingredients.add(new Ingredient( // * 22
         "Ogórek zielony",
-        "zielony ogórek");
+        "zielony ogórek"));
 
-    Ingredient i23 = new Ingredient( // * 23
+    ingredients.add(new Ingredient( // * 23
         "Sos burgerowy",
-        "Najlepszy sosik do hamburgera");
+        "Najlepszy sosik do hamburgera"));
 
-    return List.of(
-        i1,
-        i2,
-        i3,
-        i4,
-        i5,
-        i6,
-        i7,
-        i8,
-        i9,
-        i10,
-        i11,
-        i12,
-        i13,
-        i14,
-        i15,
-        i16,
-        i17,
-        i18,
-        i19,
-        i20,
-        i21,
-        i22,
-        i23);
+    return ingredients;
   }
 
 }

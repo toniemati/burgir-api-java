@@ -1,19 +1,22 @@
 package com.burgir.category;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class CategoryConfig {
 
   public static List<Category> get() {
-    Category c1 = new Category("Burgery", "Przepyszne hamburgery 🍔");
+    LinkedList<Category> categories = new LinkedList<>();
 
-    Category c2 = new Category("Dodatki", "Najlepsze dodatki 🍟");
+    categories.add(new Category("Burgery", "Przepyszne hamburgery 🍔"));
 
-    Category c3 = new Category("Sosy", "Sosy jakich jeszcze nie jadłeś 🍛");
+    categories.add(new Category("Dodatki", "Najlepsze dodatki 🍟"));
 
-    Category c4 = new Category("Napoje", "Orzeźwiające napoje 🧃");
+    categories.add(new Category("Sosy", "Sosy jakich jeszcze nie jadłeś 🍛"));
 
-    return List.of(c1, c2, c3, c4);
+    categories.add(new Category("Napoje", "Orzeźwiające napoje 🧃"));
+
+    return categories;
   }
 
 }
