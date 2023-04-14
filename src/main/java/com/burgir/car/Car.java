@@ -1,9 +1,14 @@
 package com.burgir.car;
 
+import java.util.Set;
+
+import com.burgir.delivery.Delivery;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -21,6 +26,9 @@ public class Car {
   private Boolean bussy;
 
   private double mileage;
+
+  @OneToMany(mappedBy = "car")
+  private Set<Delivery> deliveries;
 
   public Car() {
 

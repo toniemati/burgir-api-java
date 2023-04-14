@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.burgir.customer.Customer;
+import com.burgir.delivery.Delivery;
 import com.burgir.order_product.OrderProduct;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -14,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -37,6 +39,9 @@ public class Order {
 
   @OneToMany(mappedBy = "order")
   private Set<OrderProduct> products;
+
+  @OneToOne(mappedBy = "order")
+  private Delivery delivery;
 
   public Order() {
 
@@ -78,6 +83,15 @@ public class Order {
   public void setProducts(Set<OrderProduct> products) {
     this.products = products;
   }
+
+  public Delivery getDelivery() {
+    return this.delivery;
+  }
+
+  public void setDelivery(Delivery delivery) {
+    this.delivery = delivery;
+  }
+
 
   @Override
   public String toString() {
